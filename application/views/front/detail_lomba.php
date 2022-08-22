@@ -21,7 +21,7 @@
         <div class="col-4 col-md-3"><i class="fa fa-exclamation text-primary"> </i> Status</div>
         <div class="col-8 col-md-9">: <?= $lomba['status'] == 1 ? 'Open' : 'Closed' ?></div> 
       </div>
-      <p class="text-justify"><?= str_replace('</p><br />', '</p>', $lomba['deskripsi_lomba']) ?></p>
+      <p class="text-justify"><?= str_replace('<br />', '', $lomba['deskripsi_lomba']) ?></p>
     </div>
     <div class="col-md-12 p-4 text-center">
       <h5>Daftar Peserta <?= $lomba['nama_lomba'] ?></h5>
