@@ -11,15 +11,7 @@
             <a href="https://www.instagram.com/ariemursandi/" target="_blank"><img src="<?= base_url('assets/image/') ?>IG.svg" width="50px" /></a>
             <a href="https://youtube.com/channel/UC9Tju7PUq_GIdhFcxusfooA" target="_blank"><img src="<?= base_url('assets/image/') ?>YT.svg" width="50px" /></a>
             <a href="https://belajar.id" target="_blank"><img src="<?= base_url('assets/image/') ?>KEMENDIKBUD.svg" width="50px" /></a>
-            <?php 
-              function tampil() {
-                //mengambil nilai dari visitor.txt
-                $file = 'visitor.txt';
-                $handle = fopen($file, 'r');
-                $data = intval(fread($handle, filesize($file)));
-                return $data;
-              }
-            ?>
+
             <h5 class="text-white">Visitors : <?= tampil() ?></h5>
             <div class="footer-message text-white">
               <p style="font-size: 8pt;">Copyright@ 2022 by kawananimasiku.id</p>

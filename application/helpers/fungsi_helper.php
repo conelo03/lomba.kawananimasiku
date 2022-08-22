@@ -28,6 +28,14 @@ function is_pegawai()
     return $status;
 }
 
+function tampil() {
+    $ci = get_instance();
+    $data = $ci->db->get_where('tb_visitor', ['type' => 2])->row_array();
+    $visitor = $data['visitor'];
+    return $visitor;
+}
+
+
 function set_pesan($pesan, $tipe = true)
 {
     $ci = get_instance();

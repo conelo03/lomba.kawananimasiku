@@ -182,27 +182,17 @@ class Home extends CI_Controller {
 	}
 
 	public function hitung() {
-		$file = 'visitor.txt';
 		$expire = 30 * 86400;
 		if (!isset($_COOKIE['counter'])) {
 			//cookie kosong dan tambahkan jumlah pengunjung
-			$handle = fopen($file, 'r');
-			$data = intval(fread($handle, filesize($file))); //mengambil nilai dari visitor.txt
-			$nilaibaru = $data + 1; //tambahkan nilai +1
+			$data = $this->db->get_where('tb_visitor', ['type' => 2])->row_array();
+			$nilaibaru = $data['visitor'] + 1; //tambahkan nilai +1
 			//simpan nilai baru
-			$handle = fopen($file, 'w');
-			fwrite($handle, $nilaibaru);
+			$this->db->where('type', 0);
+			$this->db->update('tb_visitor', ['visitor' => $nilaibaru]);
 			setcookie('counter', time(), time() + $expire); //tambahkan cookie dengan nilai tanggal sekarang
 		}
 		return true;
-	}
-
-	public function tampil() {
-		//mengambil nilai dari visitor.txt
-		$file = 'visitor.txt';
-		$handle = fopen($file, 'r');
-		$data = intval(fread($handle, filesize($file)));
-		return $data;
 	}
 
 }
