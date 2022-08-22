@@ -151,13 +151,14 @@
         <div class="form-group">
           <label for="file">Url Download File Animasi Pembelajaran</label>
           <input id="file" type="text" class="form-control" name="file" value="<?= $get['url_drive'] ?>" required >
-          <span class="text-danger small">File animasi diupload ke google drive/sejenisnya dan masukan link downloadnya ke form url diatas</span>
+          <span class="text-danger small">File animasi diupload ke google drive/sejenisnya dan masukan link downloadnya ke form url diatas</span><br>
+          <span class="text-danger small">File berbentuk zip/rar</span>
         </div>
 
         <div class="form-group">
           <label for="video">Url Download Video Animasi Pembelajaran</label>
           <input id="video" type="text" class="form-control" name="video" value="<?= $get['url_youtube'] ?>" required >
-          <span class="text-danger small">video animasi diupload ke google drive/sejenisnya dan masukan link downloadnya ke form url diatas</span>
+          <span class="text-danger small">Video animasi diupload ke youtube dan masukan link downloadnya ke form url diatas</span>
         </div>
       </div>
       <div class="modal-footer">
