@@ -49,6 +49,10 @@
               </div>
               <input id="password" type="password" class="form-control" name="password" required>
             </div>
+
+            <div class="mt-2 text-center">
+              <b>Belum punya akun? <a href="<?= 'https://belajar.kawananimasiku.id/register-guru' ?>" target="_blank">Buat Akun disini</a></b>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>

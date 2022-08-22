@@ -8,11 +8,11 @@
     <div class="col-md-12 p-4">
       <div class="row">
         <div class="col-12 col-md-12"><i class="fa fa-user text-primary"></i> Untuk Jenjang <?= implode(' / ', explode(',', $lomba['jenjang_sekolah'])) ?></div>
-        <div class="col-4 col-md-3"><i class="fa fa-calendar text-primary"></i> Batas Tanggal Pendaftaran</div>
+        <div class="col-4 col-md-3"><i class="fa fa-calendar text-primary"></i> Batas Tanggal Pengumpulan</div>
         <div class="col-8 col-md-9">: 
           <?= date('d F Y', strtotime($lomba['tanggal_akhir_pendaftaran'])) ?>
         </div> 
-        <div class="col-4 col-md-3"><i class="fa fa-calendar text-primary"></i> Tanggal Pengumpulan</div>
+        <div class="col-4 col-md-3"><i class="fa fa-calendar text-primary"></i> Tanggal Pelaksanaan</div>
         <div class="col-8 col-md-9">: 
           <?= date('d F Y', strtotime($lomba['tanggal_lomba'])) ?> <?= $lomba['tanggal_akhir_lomba'] == null ? '' : ' - '.date('d F Y', strtotime($lomba['tanggal_akhir_lomba'])) ?>
         </div> 
@@ -64,10 +64,8 @@
           $cek		= $this->db->get();
         ?>
           <?php if($cek->num_rows() > 0): ?>
-            <?php if(date('Y-m-d H:i:s') <= $lomba['tanggal_akhir_lomba'] && date('Y-m-d H:i:s') >= $lomba['tanggal_lomba']): ?>
+            <?php if(date('Y-m-d H:i:s') <= $lomba['tanggal_akhir_pendaftaran']): ?>
               <a data-toggle="modal" data-target="#upload-hasil-lomba<?= $lomba['id_lomba'] ?>" class="btn btn-lg btn-info">Upload URL Hasil Lomba</a>
-            <?php elseif(date('Y-m-d H:i:s') < $lomba['tanggal_lomba']): ?>
-              Batas waktu pengumpulan belum dibuka, pengumpulan akan dibuka pada <?= date('H:i d F Y', strtotime($lomba['tanggal_lomba'])) ?>
             <?php else: ?>
               Batas waktu pengumpulan sudah selesai, terima kasih atas partisipasinya.
             <?php endif; ?>
@@ -119,6 +117,10 @@
             </a>
           </div>
           <input id="password" type="password" class="form-control" name="password" required>
+        </div>
+
+        <div class="mt-2 text-center">
+          <b>Belum punya akun? <a href="<?= 'https://belajar.kawananimasiku.id/register-guru' ?>" target="_blank">Buat Akun disini</a></b>
         </div>
       </div>
       <div class="modal-footer">

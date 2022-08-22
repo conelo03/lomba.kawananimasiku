@@ -34,11 +34,11 @@
 
 <div class="container-fluid mb-8">
   <div class="row mt-4 mb-4">
-    <div class="col-12 col-xl-12 col-md-12 mb-4 text-center">
+    <!-- <div class="col-12 col-xl-12 col-md-12 mb-4 text-center">
       <img src="<?= base_url('assets/image/LOGO DAERAH.webp') ?>" class="img" width="100px" alt="...">
       <h5>Balai Teknologi Informasi dan Komunikasi Pendidikan</h5>
       <h3 class="text-center">Lomba</h3>
-    </div>
+    </div> -->
 
     <?php if (!empty($lomba)) { ?>
       <?php foreach ($lomba as $key) { 
@@ -74,14 +74,14 @@
               <div class="col-11 col-md-11">Untuk Jenjang <?= implode(' / ', explode(',', $key['jenjang_sekolah'])) ?></div>
               <div class="col-12 col-md-12">&nbsp;</div>
               <div class="col-1 col-md-1"><i class="fa fa-calendar text-primary"></i></div>
-              <div class="col-11 col-md-11">Batas Tanggal Pendaftaran :</div>
+              <div class="col-11 col-md-11">Batas Tanggal Pengumpulan :</div>
               <div class="col-1 col-md-1"></div>
               <div class="col-11 col-md-11"> 
                 <?= date('d F Y', strtotime($key['tanggal_akhir_pendaftaran'])) ?>
               </div> 
               <div class="col-12 col-md-12">&nbsp;</div>
               <div class="col-1 col-md-1"><i class="fa fa-calendar text-primary"></i></div>
-              <div class="col-11 col-md-11">Tanggal Pengumpulan :</div>
+              <div class="col-11 col-md-11">Tanggal Pelaksanaan :</div>
               <div class="col-1 col-md-1"></div>
               <div class="col-11 col-md-11"> 
                 <?= date('d F Y', strtotime($key['tanggal_lomba'])) ?> <?= $key['tanggal_akhir_lomba'] == null ? '' : ' - '.date('d F Y', strtotime($key['tanggal_akhir_lomba'])) ?>

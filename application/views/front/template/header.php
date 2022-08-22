@@ -27,7 +27,7 @@
     <script src="<?= base_url('assets/vendor/leaflet-search/') ?>src/leaflet-search.js"></script>
     
 
-    <title>Kawan Animasiku</title>
+    <title>Lomba || Kawan Animasiku</title>
     <style>
       @media only screen and (max-width: 600px) {
         /* For tablets: */
@@ -97,12 +97,15 @@
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
           <?php if($this->session->userdata('login')): ?>
+            <li class="nav-item active">
+              <a href="#" class="nav-link">Selamat datang, <?= $this->session->userdata('nama_guru') ?> </a>
+            </li>
             <li class="nav-item <?= $title == 'Logout' ? 'active' : '' ?>">
-              <a  data-toggle="modal" data-target="#logout" class="nav-link">Selamat datang, <?= $this->session->userdata('nama_guru') ?> (Logout)</a>
+              <a  data-toggle="modal" data-target="#logout" class="btn btn-outline-warning">Logout</a>
             </li>
           <?php else: ?>
             <li class="nav-item">
-              <a data-toggle="modal" data-target="#login" class="nav-link">Login</a>
+              <button data-toggle="modal" data-target="#login" class="btn btn-outline-warning">Login</button>
             </li>
           <?php endif; ?>
         </ul>
