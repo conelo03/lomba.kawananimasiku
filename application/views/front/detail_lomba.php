@@ -104,6 +104,9 @@
       </div>
       <form method="POST" action="<?= base_url('login-guru/'.$lomba['id_lomba']); ?>">
       <div class="modal-body">
+        <div class="text-justify">
+          <b>Untuk yang sudah registrasi di belajar.kawananimasiku.id, silahkan untuk langsung login pada form dibawah:</b>
+        </div>
         <div class="form-group">
           <label for="username">Email</label>
           <input id="username" type="email" class="form-control" name="email" required autofocus>
@@ -151,13 +154,15 @@
         <div class="form-group">
           <label for="file">Url Download File Animasi Pembelajaran</label>
           <input id="file" type="text" class="form-control" name="file" value="<?= $get['url_drive'] ?>" required >
-          <span class="text-danger small">URL Google Drive/sejenisnya Konten Lomba berupa rar / zip</span><br>
+          <span class="text-danger small">- URL Google Drive/sejenisnya Konten Lomba berupa rar / zip</span><br>
+          <span class="text-danger small">- Copy-kan link hasil karya lomba yg sudah di upload di Google drive</span>
         </div>
 
         <div class="form-group">
           <label for="video">Url Download Video Animasi Pembelajaran</label>
           <input id="video" type="text" class="form-control" name="video" value="<?= $get['url_youtube'] ?>" required >
-          <span class="text-danger small">Url Youtube Hasil Video Animasi Pembelajaran masing masing</span>
+          <span class="text-danger small">- Url Youtube Hasil Video Animasi Pembelajaran masing masing</span>
+          <span class="text-danger small">- Copy-kan Url/link hasil karya yg sudah di upload ke yotube masing masing</span>
         </div>
       </div>
       <div class="modal-footer">

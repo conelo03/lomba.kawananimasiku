@@ -35,6 +35,9 @@
           </div>
           <form method="POST" action="<?= base_url('login-guru'); ?>">
           <div class="modal-body">
+            <div class="text-justify">
+              <b>Untuk yang sudah registrasi di belajar.kawananimasiku.id, silahkan untuk langsung login pada form dibawah:</b>
+            </div>
             <div class="form-group">
               <label for="username">Email</label>
               <input id="username" type="email" class="form-control" name="email" required autofocus>
