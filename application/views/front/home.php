@@ -7,19 +7,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="<?= base_url('assets/image/banner_event_1.jpeg') ?>" alt="First slide">
+      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-01.jpg') ?>" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/banner_event_2.jpeg') ?>" alt="Second slide">
+      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-02.jpg') ?>" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/banner_event_3.jpeg') ?>" alt="Third slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/banner_event_4.jpeg') ?>" alt="Fourth slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/banner_event_5.jpeg') ?>" alt="Fifth slide">
+      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-03.jpg') ?>" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
