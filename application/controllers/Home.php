@@ -188,7 +188,7 @@ class Home extends CI_Controller {
 			$data = $this->db->get_where('tb_visitor', ['type' => 2])->row_array();
 			$nilaibaru = $data['visitor'] + 1; //tambahkan nilai +1
 			//simpan nilai baru
-			$this->db->where('type', 0);
+			$this->db->where('type', 2);
 			$this->db->update('tb_visitor', ['visitor' => $nilaibaru]);
 			setcookie('counter', time(), time() + $expire); //tambahkan cookie dengan nilai tanggal sekarang
 		}
