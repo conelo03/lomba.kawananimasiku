@@ -2,7 +2,7 @@
   $b = $this->db->get_where('tb_biodata', ['id_biodata' => '1'])->row_array();
   
   $this->db->like('nama_lomba', 'LOMBA', 'after');
-  $this->db->where('tanggal_akhir_pendaftaran <', date('Y-m-d'));
+  $this->db->where('tanggal_akhir_lomba <', date('Y-m-d'));
   $lomba = $this->db->get('tb_lomba')->result_array();
 ?>
 <!doctype html>
@@ -103,8 +103,12 @@
               Hasil Karya Lomba
             </a>
             <div class="dropdown-menu">
-              <?php foreach ($lomba as $key) { ?>
-                <a class="dropdown-item" href="<?= base_url('hasil-karya-lomba/'.$key['id_lomba']) ?>"><?= $key['nama_lomba'] ?></a>
+              <?php foreach ($lomba as $key) { 
+                $nama_lomba = str_replace(" VIDEO", "", $key['nama_lomba']); 
+                $nama_lomba = str_replace(" PEMBELAJARAN", "", $nama_lomba); 
+                $nama_lomba = str_replace(" JENJANG", "", $nama_lomba); 
+              ?>
+                <a class="dropdown-item" href="<?= base_url('hasil-karya-lomba/'.$key['id_lomba']) ?>"><?= $nama_lomba ?></a>
               <?php } ?>
             </div>
           </li>
