@@ -64,6 +64,57 @@ class Home extends CI_Controller {
 		$this->load->view('front/detail_lomba', $data);
 	}
 
+	public function hasil_karya($id_lomba)
+	{
+		$data['title'] = 'Hasil Karya Guru';
+		
+		$data['search'] = '';
+		
+		$config['base_url'] = site_url('Home/hasil_karya/'.$id_lomba); //site url
+		$this->db->select('*');
+		$this->db->from('tb_detail_lomba');
+		$this->db->where('id_lomba', $id_lomba);
+		$this->db->where('url_youtube !=', NULL);
+		$config['total_rows'] = $this->db->get()->num_rows(); //total row
+		$config['per_page'] = 8;  //show record per halaman
+		$config["uri_segment"] = 4;  // uri parameter
+		$choice = $config["total_rows"] / $config["per_page"];
+		$config["num_links"] = 3;
+ 
+        // Membuat Style pagination untuk BootStrap v4
+		$config['first_link']       = 'First';
+		$config['last_link']        = 'Last';
+		$config['next_link']        = 'Next';
+		$config['prev_link']        = 'Prev';
+		$config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+		$config['full_tag_close']   = '</ul></nav></div>';
+		$config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+		$config['num_tag_close']    = '</span></li>';
+		$config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+		$config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+		$config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+		$config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['prev_tagl_close']  = '</span>Next</li>';
+		$config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+		$config['first_tagl_close'] = '</span></li>';
+		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+		$config['last_tagl_close']  = '</span></li>';
+
+		$this->pagination->initialize($config);
+		$data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+
+		//panggil function get_mahasiswa_list yang ada pada mmodel mahasiswa_model. 
+		$this->db->where('id_lomba', $id_lomba);
+		$this->db->where('url_youtube !=', NULL);
+		$this->db->order_by('tanggal_upload', 'DESC');
+		$data['png'] = $this->db->get('tb_detail_lomba', $config["per_page"], $data['page'])->result_array();
+
+		$data['lomba'] = $this->db->get_where('tb_lomba', ['id_lomba' => $id_lomba])->row_array();
+		$data['pagination'] = $this->pagination->create_links();
+		$this->load->view('front/hasil_karya', $data);
+	}
+
 	public function login()
 	{
 		$data['title'] = 'Pendaftaran Lomba';
@@ -193,6 +244,30 @@ class Home extends CI_Controller {
 			setcookie('counter', time(), time() + $expire); //tambahkan cookie dengan nilai tanggal sekarang
 		}
 		return true;
+	}
+
+	public function test(){
+		$a = $this->db->get('tb_detail_lomba')->result_array();
+
+		foreach ($a as $key) {
+			if($key['url_youtube'] != NULL){
+				$url_youtube = $key['url_youtube'];
+				$pch = explode('/', $url_youtube);
+				if(count($pch) == 5){
+					$url_youtube = $key['url_youtube'];
+				} else if(count($pch) == 4) {
+					if($pch[2] == 'youtu.be'){
+						$url_youtube = $pch[0].'/'.$pch[1].'/www.youtube.com/embed/'.$pch[3];
+					}elseif($pch[2] == 'www.youtube.com'){
+						$url_youtube = $pch[0].'/'.$pch[1].'/'.$pch[2].'/embed/'.$pch[3];
+					}
+				}else{
+
+				}
+				$this->db->where('id_detail_lomba', $key['id_detail_lomba']);
+				$this->db->update('tb_detail_lomba', ['url_youtube' => $url_youtube]);
+			}
+		}
 	}
 
 }

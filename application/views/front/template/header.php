@@ -1,5 +1,9 @@
 <?php
   $b = $this->db->get_where('tb_biodata', ['id_biodata' => '1'])->row_array();
+  
+  $this->db->like('nama_lomba', 'LOMBA', 'after');
+  $this->db->where('tanggal_akhir_pendaftaran <', date('Y-m-d'));
+  $lomba = $this->db->get('tb_lomba')->result_array();
 ?>
 <!doctype html>
 <html lang="en">
@@ -93,6 +97,16 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item <?= $title == 'Home' ? 'active' : '' ?>">
             <a class="nav-link" href="<?= base_url('') ?>">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+              Hasil Karya Lomba
+            </a>
+            <div class="dropdown-menu">
+              <?php foreach ($lomba as $key) { ?>
+                <a class="dropdown-item" href="<?= base_url('hasil-karya-lomba/'.$key['id_lomba']) ?>"><?= $key['nama_lomba'] ?></a>
+              <?php } ?>
+            </div>
           </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
