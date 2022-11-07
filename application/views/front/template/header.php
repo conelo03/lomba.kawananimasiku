@@ -102,6 +102,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
               Hasil Karya Lomba
             </a>
+            <?php if ($lomba) { ?>
             <div class="dropdown-menu">
               <?php foreach ($lomba as $key) { 
                 $nama_lomba = str_replace(" VIDEO", "", $key['nama_lomba']); 
@@ -111,6 +112,7 @@
                 <a class="dropdown-item" href="<?= base_url('hasil-karya-lomba/'.$key['id_lomba']) ?>"><?= $nama_lomba ?></a>
               <?php } ?>
             </div>
+            <?php } ?>
           </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
