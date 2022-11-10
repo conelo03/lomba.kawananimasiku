@@ -40,7 +40,7 @@
         }
       }
       .bg-banner{
-        background: url('<?= base_url('assets/image/BANNER WEB8 belajar-01.png') ?>');
+        background: url('<?= str_replace("lomba.", "", base_url('assets/image/'.$b['bg_banner_hasil_lomba'])) ?>');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

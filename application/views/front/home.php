@@ -1,26 +1,30 @@
 <?php $this->load->view('front/template/header');?>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<?php
+  $b = $this->db->get_where('tb_biodata', ['id_biodata' => '1'])->row_array();
+  $images = explode('||', $b['bg_banner_lomba']);
+?>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <?php 
+      $no = 0;
+      foreach ($images as $key) { ?>
+        <li data-target="#carouselExampleControls" data-slide-to="<?= $no ?>" class="<?= $no == 0 ? 'active' : '' ?>"></li>
+    <?php $no++; } ?>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-01.jpg') ?>" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-02.jpg') ?>" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<?= base_url('assets/image/BANNER WEB LOMBA1-03.jpg') ?>" alt="Third slide">
-    </div>
+  <?php 
+    $no = 1;
+    foreach ($images as $key) { ?>
+      <div class="carousel-item <?= $no == 1 ? 'active' : '' ?>">
+        <img class="d-block w-100" src="<?= str_replace("lomba.", "", base_url('assets/image/'.$key)) ?>" alt="First slide">
+      </div>
+  <?php $no++; } ?>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
