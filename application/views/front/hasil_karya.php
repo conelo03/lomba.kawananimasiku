@@ -34,10 +34,14 @@
         <div class="col-md-3 d-flex align-items-stretch">
           <div class="card mb-3 p-2 shadow">
             <a href="<?= base_url('Home/detail/'.$key['id_detail_lomba']) ?>">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item"src="<?= $key['url_youtube'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
-              </div>
+              <?php if ($lomba['kategori_lomba'] == 'Lomba Video Animasi'): ?>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item"src="<?= $key['url_youtube'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                  </iframe>
+                </div>
+              <?php elseif ($lomba['kategori_lomba'] == 'Lomba MPI'):?>
+                <img class="card-img-top" src="https://kawananimasiku.id/assets/upload/lomba_mpi/<?= $key['url_youtube'] ?>" height="200px" alt="Card image cap">
+              <?php endif; ?>
             </a>
             <div>
             </div>
@@ -53,8 +57,9 @@
                 </p>
               </i>
             </div>
+            <?php if ($lomba['kategori_lomba'] == 'Lomba Video Animasi'): ?>
               <a href="<?= $url_youtube ?>" target="_blank" class="btn btn-warning mt-auto align-self-end">Watch</a>
-            
+            <?php endif; ?>
           </div>
         </div>
       <?php } ?>

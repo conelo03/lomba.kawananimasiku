@@ -146,7 +146,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="<?= base_url('upload-hasil-lomba/'.$lomba['id_lomba']); ?>">
+      <form method="POST" action="<?= base_url('upload-hasil-lomba/'.$lomba['id_lomba']); ?>" enctype="multipart/form-data">
       <?php
         $get = $cek->row_array();
       ?>
@@ -157,13 +157,21 @@
           <span class="text-danger small">- URL Google Drive/sejenisnya Konten Lomba berupa rar / zip</span><br>
           <span class="text-danger small">- Copy-kan link hasil karya lomba yg sudah di upload di Google drive</span>
         </div>
-
-        <div class="form-group">
-          <label for="video">Url Download Video Animasi Pembelajaran</label>
-          <input id="video" type="text" class="form-control" name="video" value="<?= $get['url_youtube'] ?>" required >
-          <span class="text-danger small">- Url Youtube Hasil Video Animasi Pembelajaran masing masing</span>
-          <span class="text-danger small">- Copy-kan Url/link hasil karya yg sudah di upload ke yotube masing masing</span>
-        </div>
+        <?php if($lomba['kategori_lomba'] == 'Lomba Video Animasi'): ?>
+          <div class="form-group">
+            <label for="video">Url Download Video Animasi Pembelajaran</label>
+            <input id="video" type="text" class="form-control" name="video" value="<?= $get['url_youtube'] ?>" required >
+            <span class="text-danger small">- Url Youtube Hasil Video Animasi Pembelajaran masing masing</span>
+            <span class="text-danger small">- Copy-kan Url/link hasil karya yg sudah di upload ke yotube masing masing</span>
+          </div>
+        <?php elseif($lomba['kategori_lomba'] == 'Lomba MPI'): ?>
+          <div class="form-group">
+            <label for="video">Gambar MPI</label>
+            <input type="hidden" name="video_old" value="<?= $get['url_youtube'] ?>" class="form-control" >
+            <input type="file" name="video" class="form-control" >
+            <span class="text-danger small">- Upload gambar hasil lomba</span>
+          </div>
+        <?php endif; ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>

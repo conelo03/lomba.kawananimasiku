@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 		date_default_timezone_set("Asia/Jakarta");
 		$this->load->helper('download');
 		$this->load->library('pagination');
+		$this->load->library('upload');
 	}
 
 	public function index()
@@ -212,12 +213,26 @@ class Home extends CI_Controller {
 	public function upload_hasil_lomba($id_lomba)
 	{
 		$id_guru = $this->session->userdata('id_guru');
-
-		$data = [
-			'tanggal_upload' => date('Y-m-d H:i:s'),
-			'url_drive' => $this->input->post('file'),
-			'url_youtube' => $this->input->post('video'),
-		];
+		$lomba		= $this->M_lomba->get_by_id($id_lomba);
+		$data;
+		if ($lomba['kategori_lomba'] == 'Lomba Video Animasi') {
+			$data = [
+				'tanggal_upload' => date('Y-m-d H:i:s'),
+				'url_drive' => $this->input->post('file'),
+				'url_youtube' => $this->input->post('video'),
+			];
+		} elseif ($lomba['kategori_lomba'] == 'Lomba MPI') {
+			if (empty($_FILES['video']['name'])) {
+				$video = $data['video_old'];
+			}else{
+				$video = $this->upload_file();
+			}
+			$data = [
+				'tanggal_upload' => date('Y-m-d H:i:s'),
+				'url_drive' => $this->input->post('file'),
+				'url_youtube' => $video,
+			];
+		}
 
 		$this->db->where('id_lomba', $id_lomba);
 		$this->db->where('id_guru', $id_guru);
@@ -230,6 +245,22 @@ class Home extends CI_Controller {
 		}
 
 		redirect('detail-lomba/'.$id_lomba);
+	}
+
+	private function upload_file()
+	{
+		$config['upload_path'] = '../public_html/assets/upload/lomba_mpi';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = 5000;
+		$this->upload->initialize($config);
+		$this->load->library('upload', $config);
+
+		if(! $this->upload->do_upload('video'))
+		{
+			return '';
+		}
+
+		return $this->upload->data('file_name');
 	}
 
 	public function hitung() {
