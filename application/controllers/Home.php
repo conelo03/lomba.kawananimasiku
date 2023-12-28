@@ -46,7 +46,7 @@ class Home extends CI_Controller {
 		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
 		//panggil function get_mahasiswa_list yang ada pada mmodel mahasiswa_model. 
-		$data['lomba'] = $this->db->order_by('tanggal_lomba', 'ASC')->get('tb_lomba', $config["per_page"], $data['page'])->result_array();         
+		$data['lomba'] = $this->db->order_by('id_lomba', 'DESC')->get('tb_lomba', $config["per_page"], $data['page'])->result_array();         
 
 		$data['pagination'] = $this->pagination->create_links();
 		$this->load->view('front/home', $data);
